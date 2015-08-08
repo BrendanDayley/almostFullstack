@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Almost Fullstack</title>
+		<link rel="stylesheet" href="./styles/styles.css">
+	</head>
+	<body>
+		<div class="wrapper">
+		    <!-- Static -->
+		    <div class="menu">
+		        <ul>
+		        <li><a href="/#/">Home</a></li>
+		        <li><a href="/#/me">Me</a></li>
+		        <li><a href="/#/skills">Skills</a></li>
+		        </ul>
+		    </div>    
+			<!-- Routing -->
+			<ng-view></ng-view>
+		</div>
+
+		<!-- Angular Core Library -->
+		<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+		<!-- Angular Routing Library -->
+		<script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
+		<!-- Angular Modul -->
+		<script src="./js/app.js"></script>
+		<!-- Angular Services -->
+		<script src="./js/services/networkService.js"></script>
+		<!-- Angular Controllers -->
+		<script src="./js/controllers/homeCtrl.js"></script>
+		<script src="./js/controllers/meCtrl.js"></script>
+		<script src="./js/controllers/skillsCtrl.js"></script>
+	</body>
+</html>
