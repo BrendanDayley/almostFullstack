@@ -56,14 +56,29 @@ app.get('/api/hobbies', function(req, res) {
 	res.json({hobbies: hobbies});
 });
 
+//We do not need this endpoint anymore!
 //GET /api/occupations:
-app.get('/api/occupations', function(req, res) {
-	res.json({occupations: occupations});
-});
+// app.get('/api/occupations', function(req, res) {
+// 	res.json({occupations: occupations});
+// });
 
 //GET /api/occupations/latest:
 app.get('/api/occupations/latest', function(req, res) {
 	res.json({latestOccupation: occupations[occupations.length - 1]});  
+});
+
+//GET /api/occupations: (Postman: localhost:3000/api/occupations?order=asc)
+app.get('/api/occupations', function(req, res) {
+	switch (req.query.order) {
+		case 'desc':
+			res.json({occupations: occupations.sort().reverse()});
+			break;
+		case 'asc':
+			res.json({occupations: occupations.sort()});
+			break;
+		default:
+			res.json({occupations: occupations});
+	}
 });
 
 //#####################################################
