@@ -38,6 +38,21 @@ app.use('/', cors());
 // app.use('/', allowCrossDomain);
 
 //#####################################################
+//Custom functions:
+//#####################################################
+var experience = function(arr, experience) {
+	var container = [];
+	for (var i = 0; i < arr.length; i++) {
+		for (var key in arr[i]) {
+			if (arr[i][key] === experience) {
+				container.push(arr[i]);
+			}
+		}
+	}
+	return container;
+};
+
+//#####################################################
 //Routes:
 //#####################################################
 
@@ -105,6 +120,31 @@ app.post('/api/occupations', function(req, res) {
 	res.json({occupations: occupations});
 });
 
+//GET - POST /api/skills: (Postman: localhost:3000/api/skills?experience=Intermediate)
+app.route('/api/skills')
+	.get(function(req, res) {
+		switch (req.query.experience) {
+			case 'Beginner':
+				res.json({skills: experience(skills, 'Beginner')});
+				break;
+			case 'Intermediate':
+				res.json({skills: experience(skills, 'Intermediate')});
+				break;
+			case 'Advance':
+				res.json({skills: experience(skills, 'Advance')});
+				break;
+			case 'Professional':
+				res.json({skills: experience(skills, 'Professional')});
+				break;
+			default:
+				res.json({skills: skills});
+		}
+	})
+	.post(function(req, res) {
+		skills.push(req.body);
+		res.json({skills: skills});
+});
+
 //#####################################################
 //Starting server:
 //#####################################################
@@ -137,17 +177,17 @@ var skills = [
     experience: 'Intermediate'
   },
   {
-    id: 2,
+    id: 3,
     name: 'Firebase',
     experience: 'Beginner'
   },
   {
-    id: 3,
+    id: 4,
     name: 'node.js',
     experience: 'Beginner'
   },
   {
-    id: 4,
+    id: 5,
     name: 'MongoDB',
     experience: 'Beginner'
   }
